@@ -43,9 +43,9 @@ dropFirstCol (r:rs) = tail r : dropFirstCol rs
 
 dropLastCol :: Board -> Board
 dropLastCol [] = []
-dropLastCol (r:rs) = top: dropLastCol rs 
+dropLastCol (r:rs) = top r : dropLastCol rs 
   where
-    top = take (len - 1) r
+    top = take (len - 1)
     len = length r
 
 -- Q#06
