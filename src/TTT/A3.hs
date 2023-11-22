@@ -99,5 +99,6 @@ isValidMove rs (x,y)
   | otherwise = False
     where
       worker [] _ = False
-      worker (r:_) (0, y) = isColEmpty r 0
+      worker (r:_) (0, y) = isColEmpty r y
       worker (_:rs) (x, y) = worker rs (x-1, y)
+

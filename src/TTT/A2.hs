@@ -61,12 +61,18 @@ isMoveInBounds (x, y) =
 
 -- Q#09
 stringToMove :: String -> Move
-stringToMove (c1:c2:[]) = if outOfRange col || outOfRange row then _INVALID_MOVE_ else (row, col)
+stringToMove (c1:c2:[]) 
+  | isMoveInBounds (row, col)  = (row, col)
+  | otherwise = _INVALID_MOVE_
+  where 
+      row = convertRowIndex c1
+      col = readDigit c2
+{- stringToMove (c1:c2:[]) = if outOfRange col || outOfRange row then _INVALID_MOVE_ else (row, col)
   where 
     outOfRange d = d < 0 || d >= _SIZE_
     row = convertRowIndex c1
     col = readDigit c2
-stringToMove _ = _INVALID_MOVE_
+stringToMove _ = _INVALID_MOVE_ -}
   
 
 -- Q#10
