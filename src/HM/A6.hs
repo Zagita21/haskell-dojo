@@ -1,6 +1,6 @@
 module HM.A6 where
 
-import Data.Char (isAlpha)
+import Data.Char (isAlpha, toUpper)
 import HM.Provided
 
 -- Q#01
@@ -33,7 +33,7 @@ revealLetters m = zipWith (\x y -> if x == m then x else y)
 
 -- Q#06
 updateChances :: Move -> Secret -> Chances -> Chances
-updateChances m s c = let goodGuess = m `elem` s in
+updateChances m s c = let goodGuess = (toUpper m) `elem` s in
   if goodGuess then c else c - 1
 
 -- Q#07
