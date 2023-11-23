@@ -67,6 +67,7 @@ stringToMove (c1:c2:[])
   where 
       row = convertRowIndex c1
       col = readDigit c2
+stringToMove _ = _INVALID_MOVE_
 {- stringToMove (c1:c2:[]) = if outOfRange col || outOfRange row then _INVALID_MOVE_ else (row, col)
   where 
     outOfRange d = d < 0 || d >= _SIZE_

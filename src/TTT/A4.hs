@@ -98,4 +98,4 @@ prependRowIndices = zipWith (:) ['A'..]
 
 -- Q#11
 formatBoard :: Board -> String
-formatBoard b = unlines . (_HEADER_ :) . prependRowIndices . formatRows $ b
+formatBoard b = (('\n':[]) ++ ) . unlines . (_HEADER_ :) . prependRowIndices . formatRows $ b
