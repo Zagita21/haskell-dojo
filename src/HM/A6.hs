@@ -4,27 +4,44 @@ import Data.Char (isAlpha)
 import HM.Provided
 
 -- Q#01
+type Chances = Int
+type Guess = String
+type Move = Char
+type Secret = String
+type Dictionary = [String]
 
 -- Q#02
-data GameException
+data GameException = InvalidChars
+ | InvalidLength
+ | NotInDict
+ | InvalidMove
+ | RepeatMove
+ | GameOver
 
 -- Q#03
-
-lengthInRange = undefined
+lengthInRange :: Secret -> Bool
+lengthInRange s = let (shortest, longest) = _LENGTH_ in
+  length s >= shortest && length s <= longest 
 
 -- Q#04
-
-invalidMove = undefined
+invalidMove :: Char -> Bool 
+invalidMove = not . isAlpha
 
 -- Q#05
-
-revealLetters = undefined
+revealLetters :: Move -> Secret -> Guess -> Guess
+revealLetters m = zipWith (\x y -> if x == m then x else y)
 
 -- Q#06
-
-updateChances = undefined
+updateChances :: Move -> Secret -> Chances -> Chances
+updateChances m s c = let goodGuess = m `elem` s in
+  if goodGuess then c else c - 1
 
 -- Q#07
-
-setSecret = undefined
-
+setSecret :: IO String
+setSecret = do
+  putStr "Enter a secret word:\t"
+  showInput False
+  input <- getLine
+  showInput True
+  _SPACE_
+  return input
